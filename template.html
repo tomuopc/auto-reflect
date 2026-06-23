@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI提示词模板页面</title>
+    <link rel="stylesheet" href="template.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 1. Top Header -->
+        <h1 class="main-title">设置AI自动写reflect的提示词</h1>
+        
+        <!-- Header Ad -->
+        <div style="text-align: center; margin-top: 5px; margin-bottom: 15px; font-size: 16px;">
+            <span style="color: #FF6666;">5分钟生成并自动上线一个联盟网站：</span>
+            <a href="https://affx.ai/?af=x" target="_blank" class="header-promo-link">affx.ai</a>
+        </div>
+
+        <p class="privacy-notice">所有内容都是保存到你的电脑浏览器缓存中，云端不存储内容。</p>
+
+        <div class="content-wrapper">
+            <!-- 2. Left Column: System Prompt -->
+            <div class="column">
+                <h2 class="column-header">系统提示词</h2>
+
+                <div class="input-group">
+                    <textarea id="systemPrompt" class="text-input" placeholder="输入系统提示词..."></textarea>
+                </div>
+                <div class="btn-group">
+                    <button id="saveSystemBtn" class="btn btn-save">保存</button>
+                    <button id="resetSystemBtn" class="btn btn-reset">重置</button>
+                </div>
+                
+                <div class="help-text">
+                    <p>系统提示词可以让AI了解需要撰写的内容。</p>
+                    <p>建议包含以下内容：</p>
+                    <ol>
+                        <li>你的日常工作内容的概览</li>
+                        <li>想要AI写作的风格、语气等</li>
+                    </ol>
+                    <p>比如可以这样写：</p>
+                    <div class="example-box"># 角色
+你是一个联盟网站的推广人员，你的项目叫做xxx，项目内容主要是xxx。
+你不是管理人员，你手下没有团队，所有事情全靠你一个人做，你更专注于自己的业绩，比如你带来的注册用户量、自己的独立站的流量，而不是项目总体的注册用户量或项目主站的流量。
+# 日常工作内容
+1. 在各个社媒发布推广帖子
+2. 在项目的网站上撰写落地页，吸引用户点击进来注册
+3. 在自己的独立站上写博客、测评等
+4. 建新的独立站
+5. 使用AI生成视频分发到各个社媒引流
+6. 研究关键词
+7. 购买域名备用
+8. 优化以前的网站
+9. 规划新网站的内容架构
+10. 试用新的AI工具
+11. 更新之前的老落地页和文章
+12. 寻找新的配图作为以后的备用
+等等
+# 需要做的事情
+你每天需要结合当天/当周/近期的工作内容，来完成当日/当周的日报/周报撰写
+# 写作风格
+1. 绝不能暴露你是AI，也不能说“你正在思考”之类的话。像真人一样思考和说话。不要加粗内容，不要输入html符号。只输出纯文本。
+2. 略正式，像一个真正的公司员工，不要夸张，不要口水话，重点清晰、简洁明了，逻辑清楚、详略得当。
+3. 你每天只会做一些事情，而不是所有事情都会做。因此内容的密度应合理、符合现实世界。
+4. 你不会摸鱼，看起来你永远在认真工作，仔细思考问题。
+5. 尽可能使用数据来描述你的每日工作。
+6. 写作内容不一定要完全符合语法规范，只要大概意思能明白就行。
+7. 不要机械化的生成内容，比如以“学习了”、“发现了”开头，而是直接写内容。
+8. 只需要描述做了什么，而不要描述做这件事情的目的。
+# 写作格式
+1. 不允许以“Today, I xxx”作为开头，而是直接写内容。
+2. 多使用分段、分点的描述。
+3. 禁止写长句子和难句子，只使用3-10个单词的短语来简单描述或表达，而不是一整句完整的话。
+4. &lt;不允许&gt;出现空行。
+# 重要
+你将永远只能使用&lt;英文&gt;来撰写内容和输出。
+# 举例
+比如需要写当日的工作总结，你可能会这样写：
+1. Wrote two blog posts on my website.
+2. Researched some keywords to prepare for future blog content.
+3. Optimized three previous landing pages.
+4. Finded some new images.
+</div>
+                </div>
+            </div>
+
+            <!-- 3. Right Column: User Prompts -->
+            <div class="column">
+                <h2 class="column-header">用户提示词（打开开关代表该板块会自动填写）</h2>
+                
+                <div class="input-group">
+                    <div class="label-with-switch">
+                        <label class="switch">
+                            <input type="checkbox" id="enable_user_workSummary" checked>
+                            <span class="slider round"></span>
+                        </label>
+                        <label class="sub-label">Work summary（每日工作总结）</label>
+                        <label class="friday-checkbox" style="margin-left: 10px; display: inline-flex; align-items: center; font-size: 12px; color: #666;">
+                            <input type="checkbox" id="friday_only_user_workSummary" style="margin-right: 4px;"> 只在周五执行
+                        </label>
+                        <span class="tooltip-icon">?
+                            <img src="image/1.jpg" class="tooltip-image">
+                        </span>
+                    </div>
+                    <textarea id="user_workSummary" class="text-input">你的日常工作主要是利用各种方法推广引流，每天可能只会做2-5件事情。只需要说做了什么，不需要说这样做的目的。现在，输出你的今日工作内容。用英文输出。</textarea>
+                </div>
+
+                <div class="input-group">
+                    <div class="label-with-switch">
+                        <label class="switch">
+                            <input type="checkbox" id="enable_user_learn" checked>
+                            <span class="slider round"></span>
+                        </label>
+                        <label class="sub-label">What did I learn（今天我学到了什么）</label>
+                        <label class="friday-checkbox" style="margin-left: 10px; display: inline-flex; align-items: center; font-size: 12px; color: #666;">
+                            <input type="checkbox" id="friday_only_user_learn" style="margin-right: 4px;"> 只在周五执行
+                        </label>
+                        <span class="tooltip-icon">?
+                            <img src="image/2.jpg" class="tooltip-image">
+                        </span>
+                    </div>
+                    <textarea id="user_learn" class="text-input">根据你的日常工作内容，输出1-2个你今天学到的东西，要简短、清晰。用英文输出。</textarea>
+                </div>
+
+                <div class="input-group">
+                    <div class="label-with-switch">
+                        <label class="switch">
+                            <input type="checkbox" id="enable_user_cantSolve" checked>
+                            <span class="slider round"></span>
+                        </label>
+                        <label class="sub-label">Things at work that I can't solve（奇怪、不明确、荒谬、今天无法解决的问题）</label>
+                        <label class="friday-checkbox" style="margin-left: 10px; display: inline-flex; align-items: center; font-size: 12px; color: #666;">
+                            <input type="checkbox" id="friday_only_user_cantSolve" style="margin-right: 4px;"> 只在周五执行
+                        </label>
+                        <span class="tooltip-icon">?
+                            <img src="image/3.jpg" class="tooltip-image">
+                        </span>
+                    </div>
+                    <textarea id="user_cantSolve" class="text-input">输出1-2个你今天在工作中遇到的奇怪的、不明确的、荒谬的事情，或者今天无法解决的问题，需要符合常理。用英文输出。</textarea>
+                </div>
+
+                <div class="input-group">
+                    <div class="label-with-switch">
+                        <label class="switch">
+                            <input type="checkbox" id="enable_user_mistakes">
+                            <span class="slider round"></span>
+                        </label>
+                        <label class="sub-label">Small mistakes I made（我犯了什么错误）</label>
+                        <label class="friday-checkbox" style="margin-left: 10px; display: inline-flex; align-items: center; font-size: 12px; color: #666;">
+                            <input type="checkbox" id="friday_only_user_mistakes" style="margin-right: 4px;"> 只在周五执行
+                        </label>
+                        <span class="tooltip-icon">?
+                            <img src="image/4.jpg" class="tooltip-image">
+                        </span>
+                    </div>
+                    <textarea id="user_mistakes" class="text-input">输出1-2个你今天在工作中犯的错误。用英文输出。</textarea>
+                </div>
+
+                <div class="input-group">
+                    <div class="label-with-switch">
+                        <label class="switch">
+                            <input type="checkbox" id="enable_user_nextTasks">
+                            <span class="slider round"></span>
+                        </label>
+                        <label class="sub-label">Tasks for the next working day（下一工作日的任务）</label>
+                        <label class="friday-checkbox" style="margin-left: 10px; display: inline-flex; align-items: center; font-size: 12px; color: #666;">
+                            <input type="checkbox" id="friday_only_user_nextTasks" style="margin-right: 4px;"> 只在周五执行
+                        </label>
+                        <span class="tooltip-icon">?
+                            <img src="image/5.jpg" class="tooltip-image">
+                        </span>
+                    </div>
+                    <textarea id="user_nextTasks" class="text-input">输出明天你准备做什么，条理清晰、分点描述，你可能会做2-5件事情。用英文输出。</textarea>
+                </div>
+
+                <div class="input-group">
+                    <div class="label-with-switch">
+                        <label class="switch">
+                            <input type="checkbox" id="enable_user_didToday">
+                            <span class="slider round"></span>
+                        </label>
+                        <label class="sub-label">What did I do today（今天我做了什么事）</label>
+                        <label class="friday-checkbox" style="margin-left: 10px; display: inline-flex; align-items: center; font-size: 12px; color: #666;">
+                            <input type="checkbox" id="friday_only_user_didToday" style="margin-right: 4px;"> 只在周五执行
+                        </label>
+                        <span class="tooltip-icon">?
+                            <img src="image/6.jpg" class="tooltip-image">
+                        </span>
+                    </div>
+                    <textarea id="user_didToday" class="text-input">输出你今天对客户和行业做的最有意义的1-2个事情。用英文输出。</textarea>
+                </div>
+
+                <div class="input-group">
+                    <div class="label-with-switch">
+                        <label class="switch">
+                            <input type="checkbox" id="enable_user_weeklySummary" checked>
+                            <span class="slider round"></span>
+                        </label>
+                        <label class="sub-label">Weekly Summary（每周总结）</label>
+                        <label class="friday-checkbox" style="margin-left: 10px; display: inline-flex; align-items: center; font-size: 12px; color: #666;">
+                            <input type="checkbox" id="friday_only_user_weeklySummary" style="margin-right: 4px;"> 只在周五执行
+                        </label>
+                        <span class="tooltip-icon">?
+                            <img src="image/7.jpg" class="tooltip-image">
+                        </span>
+                    </div>
+                    <div class="help-text" style="margin-top: 8px;">
+                        随机选择“是的”/“不”。
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div class="label-with-switch">
+                        <label class="switch">
+                            <input type="checkbox" id="enable_user_impossible">
+                            <span class="slider round"></span>
+                        </label>
+                        <label class="sub-label">Impossible Challenge（不可能的挑战）</label>
+                        <label class="friday-checkbox" style="margin-left: 10px; display: inline-flex; align-items: center; font-size: 12px; color: #666;">
+                            <input type="checkbox" id="friday_only_user_impossible" style="margin-right: 4px;"> 只在周五执行
+                        </label>
+                        <span class="tooltip-icon">?
+                            <img src="image/8.jpg" class="tooltip-image">
+                        </span>
+                    </div>
+                    <textarea id="user_impossible" class="text-input">输出1个你认为的项目远景或你想要达到的目标。看起来似乎非常困难，但又在情理之中。要合理且具体，不要夸大和虚无缥缈。聚焦自己的工作绩效，而不是项目。用英文输出。</textarea>
+                </div>
+
+                <div class="input-group">
+                    <div class="label-with-switch">
+                        <label class="switch">
+                            <input type="checkbox" id="enable_user_share">
+                            <span class="slider round"></span>
+                        </label>
+                        <label class="sub-label">Add anything you'd like to share（添加任何你想分享的内容）</label>
+                        <label class="friday-checkbox" style="margin-left: 10px; display: inline-flex; align-items: center; font-size: 12px; color: #666;">
+                            <input type="checkbox" id="friday_only_user_share" style="margin-right: 4px;"> 只在周五执行
+                        </label>
+                        <span class="tooltip-icon">?
+                            <img src="image/9.jpg" class="tooltip-image">
+                        </span>
+                    </div>
+                    <textarea id="user_share" class="text-input">随机输出一件你想分享的内容，比如关于某部书籍、感恩、人生目标、提升自我的方法等。标题简短、内容精炼有力。用英文输出。</textarea>
+                </div>
+
+                <div class="input-group">
+                    <div class="label-with-switch">
+                        <label class="switch">
+                            <input type="checkbox" id="enable_user_badge">
+                            <span class="slider round"></span>
+                        </label>
+                        <label class="sub-label">Self-evaluation badge（随机选择一个自我评价徽章）</label>
+                        <label class="friday-checkbox" style="margin-left: 10px; display: inline-flex; align-items: center; font-size: 12px; color: #666;">
+                            <input type="checkbox" id="friday_only_user_badge" style="margin-right: 4px;"> 只在周五执行
+                        </label>
+                        <span class="tooltip-icon">?
+                            <img src="image/10.jpg" class="tooltip-image">
+                        </span>
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <button id="saveUserBtn" class="btn btn-save">保存</button>
+                    <button id="resetUserBtn" class="btn btn-reset">重置</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="template.js"></script>
+</body>
+</html>

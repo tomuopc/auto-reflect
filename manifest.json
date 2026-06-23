@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "AI自动写reflect",
+  "version": "5.0",
+  "description": "AI自动写reflect",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon/icon16.png",
+      "48": "icon/icon48.png",
+      "128": "icon/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icon/icon16.png",
+    "48": "icon/icon48.png",
+    "128": "icon/icon128.png"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.reflect.today/*", "*://reflect.today/*"],
+      "exclude_matches": ["*://kpiweb.reflect.today/*"],
+      "js": ["content.js", "promo.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["image/aff.png"],
+      "matches": ["*://*.reflect.today/*", "*://reflect.today/*"]
+    }
+  ]
+}

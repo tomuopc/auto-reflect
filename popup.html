@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI自动写reflect</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">AI自动写reflect</h1>
+        
+        <div class="setting-item">
+            <span class="setting-label">填充完毕后自动发布</span>
+            <label class="switch">
+                <input type="checkbox" id="autoPublish">
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+        <div class="setting-item">
+            <span class="setting-label">隐藏自动填写按钮</span>
+            <label class="switch">
+                <input type="checkbox" id="hideAutoFillBtn">
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+        <div class="setting-item">
+            <span class="setting-label">展示选填框</span>
+            <label class="switch">
+                <input type="checkbox" id="showOptionalInput">
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+        <button id="openTemplateBtn" class="main-btn">打开提示词设置页面（必填）</button>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html>
