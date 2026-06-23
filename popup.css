@@ -38,6 +38,26 @@ body {
     color: #333;
 }
 
+.open-source-notice {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 18px;
+    font-size: 15px;
+}
+
+.open-source-text {
+    color: #8a8a8a;
+}
+
+.open-source-link {
+    color: #4d8dff;
+    text-decoration: none;
+}
+
+.open-source-link:hover {
+    color: #2f72ea;
+}
+
 /* Switch CSS */
 .switch {
     position: relative;

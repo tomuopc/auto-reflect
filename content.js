@@ -214,12 +214,32 @@ function publishJournal() {
 
 // 自动选中“已完成”状态函数
 function selectCompletedStatus() {
-    const optionsContainer = document.querySelector('div.today-status-options');
-    if (optionsContainer) {
-        const buttons = optionsContainer.querySelectorAll('button.status-option');
-        for (const btn of buttons) {
-            if (btn.innerText.trim() === '是') {
-                btn.click();
+    const optionGroups = document.querySelectorAll('div.today-status-options');
+    if (optionGroups.length > 0) {
+        let selectedYes = false;
+        let selectedNo = false;
+
+        for (const group of optionGroups) {
+            const buttons = group.querySelectorAll('button.status-option');
+            if (buttons.length === 0) continue;
+
+            for (const btn of buttons) {
+                const text = btn.innerText.trim().toLowerCase();
+
+                if (!selectedYes && (text === '是' || text === 'yes')) {
+                    btn.click();
+                    selectedYes = true;
+                    break;
+                }
+
+                if (!selectedNo && text === 'no') {
+                    btn.click();
+                    selectedNo = true;
+                    break;
+                }
+            }
+
+            if (selectedYes && selectedNo) {
                 break;
             }
         }
@@ -439,17 +459,6 @@ function renderButton() {
             const userPromptToggles = storageData.userPromptToggles || {};
             const userPromptFridayToggles = storageData.userPromptFridayToggles || {};
             
-            // 假设 config.js 的内容我们需要手动注入或者通过 message 传递
-            // 这里为了简化，我们硬编码 config.js 的内容，实际开发中建议通过 background script 通信获取
-            // 或者将 config.js 作为 web_accessible_resources 引入
-            const AI_CONFIG = {
-                BASE_URL: 'https://xiaoai.plus/v1',
-                CHAT_URL: 'https://xiaoai.plus/v1/chat/completions',
-                MODEL: 'gpt-4o-mini',
-                TEMPERATURE: 0.7,
-                API_KEY: 'sk-34Z6GYVrNqdIsI6vGkg8WM34QS6v7kIZTvMgl07Q7d6ERuyJ'
-            };
-
             // 2. 查找页面元素并准备任务
             const tasks = [];
             const badgeTask = []; // 特殊处理徽章

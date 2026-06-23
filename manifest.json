@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "AI自动写reflect",
-  "version": "5.0",
+  "version": "5.1",
   "description": "AI自动写reflect",
   "action": {
     "default_popup": "popup.html",
@@ -26,7 +26,7 @@
     {
       "matches": ["*://*.reflect.today/*", "*://reflect.today/*"],
       "exclude_matches": ["*://kpiweb.reflect.today/*"],
-      "js": ["content.js", "promo.js"],
+      "js": ["config.js", "content.js", "promo.js"],
       "run_at": "document_end"
     }
   ],
